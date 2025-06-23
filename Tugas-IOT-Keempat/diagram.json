@@ -1,0 +1,53 @@
+{
+    "version": 1,
+    "author": "Justinn",
+    "editor": "wokwi",
+    "parts": [
+      {
+        "type": "board-esp32-devkit-c-v4",
+        "id": "esp",
+        "top": 7.94,
+        "left": -140.3,
+        "rotate": 90,
+        "attrs": {}
+      },
+      {
+        "type": "board-ssd1306",
+        "id": "oled1",
+        "top": 108.74,
+        "left": 230.63,
+        "attrs": { "i2cAddress": "0x3c" }
+      },
+      { "type": "wokwi-dht22", "id": "dht1", "top": -95.7, "left": 90.6, "attrs": {} },
+      {
+        "type": "wokwi-photoresistor-sensor",
+        "id": "ldr1",
+        "top": 233.6,
+        "left": -104.8,
+        "attrs": {}
+      },
+      {
+        "type": "wokwi-resistor",
+        "id": "r1",
+        "top": 272.75,
+        "left": 96,
+        "attrs": { "value": "10000" }
+      }
+    ],
+    "connections": [
+      [ "esp:TX", "$serialMonitor:RX", "", [] ],
+      [ "esp:RX", "$serialMonitor:TX", "", [] ],
+      [ "dht1:VCC", "esp:3V3", "red", [ "v48", "h-115.2" ] ],
+      [ "dht1:GND", "esp:GND.2", "black", [ "v0" ] ],
+      [ "dht1:SDA", "esp:4", "green", [ "v153.6", "h-239.9" ] ],
+      [ "ldr1:VCC", "dht1:VCC", "red", [ "h0" ] ],
+      [ "ldr1:GND", "dht1:GND", "black", [ "h0" ] ],
+      [ "oled1:VCC", "dht1:VCC", "red", [ "v-48", "h-172.65" ] ],
+      [ "ldr1:AO", "r1:1", "orange", [ "h0" ] ],
+      [ "r1:2", "esp:34", "orange", [ "v-230.4", "h-202.8" ] ],
+      [ "oled1:GND", "dht1:GND", "black", [ "v-76.8", "h-134.4" ] ],
+      [ "oled1:SCL", "esp:22", "blue", [ "h0.3", "v-19.2", "h-220.8", "v57.6" ] ],
+      [ "oled1:SDA", "esp:21", "violet", [ "v-28.8", "h-355.13" ] ]
+    ],
+    "dependencies": {}
+  }
